@@ -9,5 +9,4 @@ def convert_epub_to_txt(book_instance):
         soup = BeautifulSoup(doc.get_body_content(), 'html.parser')
         complete_text += '\n'.join([para.get_text() for para in soup.find_all('p')])
     
-
     return complete_text
