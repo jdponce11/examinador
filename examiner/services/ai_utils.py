@@ -1,6 +1,7 @@
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
+import json
 load_dotenv()
 
 def generate_client():
@@ -31,8 +32,9 @@ def generate_questions(book, chunks, num_questions, prompt_for_question, openAIC
             f'Genera una lista con la estructura JSON arriba, con {questions_per_chunk} elementos, '
             f'es decir, {questions_per_chunk} diferentes preguntas para esta sección'
         )
-        question_json = generate_response(openAIClient, model, question_prompt_w_num_and_meta, "sección del libro: "+ chunk.content)
-        questions.append(question_json)
+        json_question_block = generate_response(openAIClient, model, question_prompt_w_num_and_meta, "sección del libro: "+ chunk.content)
+        dicts_question_block = json.loads(json_question_block)["preguntas"]
+        questions.extend(dicts_question_block)
 
     return questions
 

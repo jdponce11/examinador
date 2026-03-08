@@ -1,0 +1,6 @@
+ebooklib
+bs4
+markdown-pdf
+openai
+dotenv
+fpdf2
