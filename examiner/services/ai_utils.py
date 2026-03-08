@@ -17,7 +17,7 @@ def generate_response(client, model, instructions, input):
     )
     return response.output_text
 
-def generate_exam(book, chunks, num_questions, prompt_for_question, openAIClient, model):
+def generate_questions(book, chunks, num_questions, prompt_for_question, openAIClient, model):
     questions_per_chunk = num_questions//len(chunks)
     if (questions_per_chunk < 1) or num_questions % len(chunks) != 0:
         raise Error("Invalid number of questions for exam, has to be multiple of chunks.")
